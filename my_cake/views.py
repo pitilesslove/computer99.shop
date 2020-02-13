@@ -15,7 +15,7 @@ def home(request):
 
     # defining a params dict for the parameters to be sent to the API
     PARAMS = {
-        "q": "Kurzgesagt",
+        "q": "Kurzgesagt – In a Nutshell",
         "part": "snippet",
         "key": "AIzaSyCz7591PCd3P9fyzQ4ZXMfvkuvd8o38AfQ",
         "maxResults": "16"

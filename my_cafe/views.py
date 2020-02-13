@@ -17,16 +17,19 @@ def home(request):
         for a_list in one_html_list:
             original_link_address = DAUM_CAFE_URL + a_list.find(
                 class_='popular-list__link')['href']
-
-            thumbnail_image_url = 'http:' + a_list.find("img").get('src')
-            rank = a_list.find(class_='popular-list__rank').getText()[2:]
-            thread_title = a_list.find("strong").getText()
-            made_from = a_list.find(class_='popular-list__cafe-name').getText()
-            # print(image_tag)
-           # models.PopularThread.objects.create(
-           #     rank=int(rank[2:]), made_from=made_from, title=thread_title, thumbnail_img_url=original_link_address, original_path=original_link_address)
-            popular_thread_list.append(
-                (rank, thread_title, thumbnail_image_url, made_from, original_link_address))
+            try:
+                thumbnail_image_url = 'http:' + a_list.find("img").get('src')
+                rank = a_list.find(class_='popular-list__rank').getText()[2:]
+                thread_title = a_list.find("strong").getText()
+                made_from = a_list.find(
+                    class_='popular-list__cafe-name').getText()
+                # print(image_tag)
+            # models.PopularThread.objects.create(
+            #     rank=int(rank[2:]), made_from=made_from, title=thread_title, thumbnail_img_url=original_link_address, original_path=original_link_address)
+                popular_thread_list.append(
+                    (rank, thread_title, thumbnail_image_url, made_from, original_link_address))
+            except:
+                continue
     stuff_for_frontend = {
         'title': 'My Cafe',
         'desc': 'you can search contents from cafe\'s choose',
