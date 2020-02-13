@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TodoApp</title>
+
+    {% load static %}
+    <!--<link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">-->
+    <link href="{% static 'my_cake/css/learning_page.css' %}" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+</head>
+
+<body>
+    <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+    <div class="wrapper">
+        <div class="box youtube_area">
+            <div id="videoContainer" youtube_id="{{youtube_id}}">
+                <div id="yt">
+                    <div id="player"></div>
+                </div>
+            </div>
+        </div>
+        <div class="box right_area">
+            <span id="word_you_wana_know"></span>
+            <span id="meaning_word_you_wana_know"></span>
+        </div>
+        <div class="box subtitle_area">
+            <div id="current_script" class="box subtitle">
+
+            </div>
+        </div>
+        <div class="box button_control_area">
+            {% csrf_token %}
+            <button id="next_button" onclick="getScripts(-1)">prev button</button>
+            <input id="current_script_index" type="" name="current_script" data-id="{{current_script_index}}"
+                value="{{current_script_index}}" />
+            <input type="" name="length_script" value="{{length_of_scripts}}" />
+            <button id="next_button" onclick="getScripts(1)">next button</button>
+            <button id="get_word" onclick="getMeaningOfWord()">hello</button>
+        </div>
+
+        <!--{% for content in time_marks %}
+        <div>{{content.text}}</div>
+        <div>{{content.start}}</div>
+        <div>{{content.duration}}</div>
+        {% endfor %}
+        -->
+    </div>
+    <!-- /container -->
+    <script src="{% static 'jquery-3.2.1.min.js' %}"></script>
+    <!-- <script src="{% static 'my_cake/js/jquery-jsonp.js' %}"></script> -->
+    <script src="{% static 'my_cake/js/jquery_youtube.js' %}"></script>
+    <script src="{% static 'my_cake/js/learning_page.js' %}"></script>
+</body>
+
+</html>

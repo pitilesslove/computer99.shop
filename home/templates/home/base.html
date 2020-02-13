@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>computer99.shop</title>
+    {% endif %}
+    {% load static %}
+    <!--<link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">-->
+    <link href="{% static 'home/css/base.css' %}" rel="stylesheet">
+    {% block css %} {% endblock %}
+</head>
+
+<body>
+    <div class="header">
+        {% if title %}
+        <h1>{{ title }}</h1>
+        <p>{{ desc }}</p>
+        {% else %}
+        <h1>computer99.shop</h1>
+        <p>home</p>
+        {% endif %}
+    </div>
+    <div class="topnav">
+        <a href="#">Login</a>
+        <a href="{% url 'my_cake' %}">My_Cake</a>
+        <a href="{% url 'my_cafe' %}">My_Cafe</a>
+        <a href="#" style="float:right">Link</a>
+    </div>
+    <div class="main_area">
+        <div class="left_area">
+            <div class="left_button_list">
+                <div class="django_logo" style="height:60px;"></div>
+                <div class="fakeimg" style="height:60px;">Image</div>
+                <div class="fakeimg" style="height:60px;">Image</div>
+                <div class="fakeimg" style="height:60px;">Image</div>
+            </div>
+        </div>
+        <div class="contents_area">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+
+    <div class="footer">
+        <h2>Footer</h2>
+    </div>
+
+
+    <!-- /container -->
+    <script src="{% static 'jquery-3.2.1.min.js' %}"></script>
+</body>
+
+</html>

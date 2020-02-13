@@ -1,0 +1,17 @@
+{% extends "home/base.html" %}
+{% load static %}
+{% block css %}
+<link href="{% static 'my_cafe/css/my_cafe.css' %}" rel="stylesheet">
+{% endblock css %}
+{% block content %}
+<div class="video_list_area">
+    {% for content in contents %}
+    <div class="gallery">
+        <a target="_blank" href="{{content.4}}">
+            <img src="{{content.2}}" />
+        </a>
+        <div class="desc">{{content.1}}</div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}

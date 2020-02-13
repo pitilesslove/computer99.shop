@@ -1,0 +1,74 @@
+
+body {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.wrapper {
+    display: grid;
+    grid-gap: 1px;
+    grid-template-columns: 7fr 5fr;
+    background-color: #fff;
+    width: 100%;
+}
+
+.box {
+    background-color: rgb(177, 123, 123);
+    border-radius: 5px;
+    padding: 0px;
+    font-size: 120%;
+}
+
+.youtube_area {
+  text-align: center;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+.right_area {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 4;
+}
+
+.subtitle_area {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  text-align: center;
+  color: #fff;
+}
+
+.button_control_area {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  text-align: center;
+}
+
+.right_area #word_you_wana_know {
+  position: relative;
+  float: left;
+  width: 100%;
+}
+
+.right_area #word_you_wana_know {
+  position: relative;
+  float: left;
+  width: 100%;
+}
+
+.right_area #meaning_word_you_wana_know {
+  position: relative;
+  float: left;
+  width: 100%;
+}
+
+.subtitle_area .one_word_of_scripts:hover {
+  color: rgba(111, 197, 250, 0.845);
+}

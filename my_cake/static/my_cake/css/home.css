@@ -1,0 +1,136 @@
+/* Header/Blog Title */
+.header {
+    padding: 30px;
+    text-align: center;
+    background: linear-gradient(129deg, #2980b9, #8e44ad);
+  }
+
+  .header h1 {
+    font-size: 50px;
+  }
+
+  /* Style the top navigation bar */
+.topnav {
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  /* Style the topnav links */
+  .topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  /* Change color on hover */
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+
+  .row {
+      position: relative;
+  }
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {   
+    position: absolute;
+    left: 0px;
+    width: 100px;
+  }
+.left_button_list {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+  
+  /* Right column */
+  .rightcolumn {
+    margin-left: 100px;
+    background-color: #f1f1f1;
+  }
+  
+  /* Fake image */
+  .fakeimg {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+
+    background-color: #aaa;
+    border-bottom: 10px;
+  }
+  
+  /* Add a card effect for articles */
+  .card {
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+  }
+  
+  .left_area {
+    float: left;  
+    width: 100px;
+  }
+  
+  .contents_area {
+    overflow: hidden;
+  }
+
+  /* Footer */
+.footer {
+    clear: both;
+    padding: 20px;
+    text-align: center;
+    background: #ddd;
+    margin-top: 20px;
+  }
+
+.video_list_area {
+    grid-gap: 1px;
+    grid-template-columns: 7fr 5fr;
+    background-color: #fff;
+    width: 100%;
+}
+
+.vidoe_box{
+    display: inline-block;
+    width: 330px;
+    height: 250px;
+    margin: 1em;background-color: rgb(107, 180, 225);
+}
+
+.video_box img {
+    display: block;
+}
+
+div.gallery {
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 200px;
+    height: 200px;
+  }
+  
+  div.gallery:hover {
+    border: 1px solid #777;
+  }
+  
+  div.gallery img {
+    width: 100%;
+    height: auto;
+  }
+  
+  div.desc {
+    padding: 15px;
+    text-align: center;
+  }
+
+  .django_logo {
+    background-image: url(https://www.djangoproject.com/m/img/logos/django-logo-negative.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
