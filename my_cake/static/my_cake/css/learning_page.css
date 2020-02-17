@@ -72,3 +72,11 @@ body {
 .subtitle_area .one_word_of_scripts:hover {
   color: rgba(111, 197, 250, 0.845);
 }
+
+#current_script_index {
+  text-align: center; 
+}
+
+#length_script {
+  font-size: 100%;
+}

@@ -7,6 +7,12 @@ var current_script = {
     start: 0,
     duration: 0,
 }
+var speed_table = [0.5, 0.75, 1, 1.25, 1.5];
+var current_speed_index = 2;
+var loop_table = [true, false];
+var current_loop_index = 0;
+var current_loop_size = 0;
+
 var current_timeout = null;
 $(document).ready(function () {
     $(".subtitle_area .one_word_of_scripts").one("mouseenter", function () {
@@ -58,7 +64,8 @@ function onPlayerStateChange(event) {
     duration_time = current_script.duration;
     if (event.data == YT.PlayerState.PLAYING) {
         clearTimeout(current_timeout);
-        current_timeout = setTimeout(replayVideo, duration_time * 1000);
+        if (loop_table[current_loop_index] == true)
+            current_timeout = setTimeout(replayVideo, duration_time * (1000 / speed_table[current_speed_index]));
     } else if (event.data == 2) {
         clearTimeout(current_timeout);
     }
@@ -87,6 +94,48 @@ function nextPlay() {
     done = false;
 }
 
+function setYoutubeSpeed() {
+    if (++current_speed_index >= speed_table.length)
+        current_speed_index = 0;
+    var set_speed_value = speed_table[current_speed_index];
+    player.setPlaybackRate(set_speed_value);
+    $("#set_speed").text(set_speed_value + "x");
+    replayVideo();
+}
+
+function setYoutubeLoop() {
+    var loop_text = "";
+
+    if (++current_loop_index >= loop_table.length)
+        current_loop_index = 0;
+
+    if (loop_table[current_loop_index] == true)
+        loop_text = "Loop on";
+    else
+        loop_text = "Loop off";
+    $("#set_loop").text(loop_text);
+    replayVideo();
+}
+
+function setLoopSize(value) {
+
+    if (current_loop_size + value < 0)
+        return;
+
+    current_loop_size += value;
+
+    var current_loop_value = current_loop_index + 1;
+    if (current_loop_size == 0) {
+        $("#current_script_index").val(current_loop_value);
+    }
+    else {
+        $("#current_script_index").val(current_loop_value + " ~ " + (current_loop_value + current_loop_size));
+    }
+    $("#current_script_index").css("width", ($("#current_script_index").val().length + 1) * 8) + 'px';
+
+
+}
+
 function csrfSafeMethod(method) {
     // these HTTP methods do not require CSRF protection
     return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
@@ -102,7 +151,7 @@ function handleLoad() {
             }
         }
     });
-
+    $("#length_script").prop('disabled', true);
     getScripts(0);
     document.onkeydown = function (e) {
         switch (e.keyCode) {

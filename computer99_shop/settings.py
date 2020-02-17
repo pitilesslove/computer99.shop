@@ -25,12 +25,13 @@ SECRET_KEY = '_&)n2yde1y+8co@ktqpef9i=ni2i^q#$*igpq93#hxmy@hnxfl'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['computer99.shop', '180.229.72.70']
+ALLOWED_HOSTS = ['computer99.shop', '180.229.72.70', '127.0.0.1']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'django_crontab',
     'my_cake.apps.MyCakeConfig',
     'my_cafe.apps.MyCafeConfig',
     'home.apps.HomeConfig',
@@ -121,3 +122,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+
+CRONJOBS = [
+    ('*/1 * * * *', 'computer99_shop.cron.get_popular_threads')
+]

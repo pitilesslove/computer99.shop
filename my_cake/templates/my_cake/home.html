@@ -3,7 +3,7 @@
 <div class="video_list_area">
     {% for content in contents %}
     <div class="gallery" video_id="{{content.videoId}}">
-        <a target="_blank" href="video={{content.videoId}}">
+        <a target="#" href="{% url 'learning_page' content.videoId %}">
             <img src="{{content.thumbnails_url}}" />
         </a>
         <div class="desc">{{content.title}}</div>

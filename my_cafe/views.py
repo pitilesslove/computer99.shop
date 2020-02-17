@@ -36,3 +36,12 @@ def home(request):
         'contents': popular_thread_list,
     }
     return render(request, 'my_cafe/home.html', stuff_for_frontend)
+
+
+example_url = 'https://m.cafe.daum.net/subdued20club/ReHf/2598433?svc=topRank'
+
+
+def show_popular_thread(request):
+    # save thread if it were not saved.
+    page = requests.get(example_url)
+    soup = BeautifulSoup(page.content, features='html.parser')

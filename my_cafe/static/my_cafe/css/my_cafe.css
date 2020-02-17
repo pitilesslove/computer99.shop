@@ -5,13 +5,14 @@ div.gallery {
     float: left;
     width: 200px;
     height: 200px;
+    overflow: hidden;
   }
   
   div.gallery:hover {
     border: 1px solid #777;
   }
   
-  div.gallery img {
+  div.gallery .input_image {
     width: 100%;
     height: 60%;
   }

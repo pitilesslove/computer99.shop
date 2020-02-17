@@ -42,9 +42,13 @@
             <button id="next_button" onclick="getScripts(-1)">prev button</button>
             <input id="current_script_index" type="" name="current_script" data-id="{{current_script_index}}"
                 value="{{current_script_index}}" />
-            <input type="" name="length_script" value="{{length_of_scripts}}" />
+            <button id="increase_loop_size" onclick="setLoopSize(1)">+</button>
+            <button id="decrease_loop_size" onclick="setLoopSize(-1)">-</button>
+            <span> / </span>
+            <span id="length_script">{{length_of_scripts}}</span>
             <button id="next_button" onclick="getScripts(1)">next button</button>
-            <button id="get_word" onclick="getMeaningOfWord()">hello</button>
+            <button id="set_speed" onclick="setYoutubeSpeed()">1x</button>
+            <button id="set_loop" onclick="setYoutubeLoop()">Loop on</button>
         </div>
 
         <!--{% for content in time_marks %}

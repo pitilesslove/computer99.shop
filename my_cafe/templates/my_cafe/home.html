@@ -5,13 +5,15 @@
 {% endblock css %}
 {% block content %}
 <div class="video_list_area">
+    {% csrf_token %}
     {% for content in contents %}
-    <div class="gallery">
-        <a target="_blank" href="{{content.4}}">
-            <img src="{{content.2}}" />
-        </a>
-        <div class="desc">{{content.1}}</div>
-    </div>
+    <form action="{% url 'show_thread'%}" method="post">
+
+        <div class="gallery">
+            <input class="input_image" type="image" src="{{content.2}}" />
+            <div class="desc">{{content.1}}</div>
+        </div>
+    </form>
     {% endfor %}
 </div>
 {% endblock content %}
