@@ -55,12 +55,8 @@ body {
   position: relative;
   float: left;
   width: 100%;
-}
-
-.right_area #word_you_wana_know {
-  position: relative;
-  float: left;
-  width: 100%;
+  color: rgba(111, 197, 250, 0.845);
+  font-size: 130%;
 }
 
 .right_area #meaning_word_you_wana_know {
@@ -81,3 +77,64 @@ body {
 #length_script {
   font-size: 100%;
 }
+
+.text_area {
+  padding-left: 10px;
+    padding-right: 5px;
+}
+
+@media only screen and (max-width: 840px) {
+  /* For mobile phones: */
+  body {
+    background-color :  #C3f;
+  }
+
+  .youtube_area {
+    text-align: center;
+      grid-column-start: 1;
+      grid-column-end: 3;
+      grid-row-start: 1;
+      grid-row-end: 2;
+  }
+  
+  .right_area {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 4;
+    grid-row-end: 5;
+    min-height: 30px;
+  }
+  
+  .subtitle_area {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    text-align: center;
+    color: #fff;
+  }
+  
+  .button_control_area {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    text-align: center;
+  }
+
+  #yt {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+  }
+  
+  #yt iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+

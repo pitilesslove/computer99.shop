@@ -24,11 +24,11 @@ $.getScript("https://www.youtube.com/iframe_api", function (data, textStatus, jq
             var initialVideo = config.videoId;
 
             player = new YT.Player(config.ytplayer.attr("id"), {
-                height: '480',
-                width: '720',
+                height: '400',
+                width: '711',
                 events: config.events,
                 videoId: initialVideo,
-                playerVars: { 'autoplay': 1, 'controls': 0, 'cc_lang_pref': 0, 'cc_load_policy': 0 },
+                playerVars: { 'autoplay': 1, 'controls': 0, 'cc_lang_pref': 'ko', 'cc_load_policy': 1, 'rel': 0 },
             });
         };
         init(); //initilize

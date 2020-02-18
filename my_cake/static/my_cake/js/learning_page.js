@@ -66,7 +66,7 @@ function onPlayerStateChange(event) {
         clearTimeout(current_timeout);
         if (loop_table[current_loop_index] == true)
             current_timeout = setTimeout(replayVideo, duration_time * (1000 / speed_table[current_speed_index]));
-    } else if (event.data == 2) {
+    } else if (event.data == YT.PlayerState.PAUSED) {
         clearTimeout(current_timeout);
     }
 }
@@ -162,8 +162,14 @@ function handleLoad() {
             case 37:
                 getScripts(-1);
                 break;
+            case 38:
+                setLoopSize(1)
+                break;
             case 39:
                 getScripts(1);
+                break;
+            case 40:
+                setLoopSize(-1);
                 break;
         }
     };
@@ -190,7 +196,13 @@ function getCookie(name) {
     return cookieValue;
 }
 
-
+function contains(target, pattern) {
+    var value = 0;
+    pattern.forEach(function (word) {
+        value = value + target.includes(word);
+    });
+    return (value === 1)
+}
 
 function getScripts(plus_minus) {
 
@@ -210,16 +222,24 @@ function getScripts(plus_minus) {
             current_script.start = data.start;
             current_script.text = data.text;
 
-            var words = data.text.split(' ');
-            var i;
+            var words = data.text.split(/[\s]+/);
+            var i, word;
             $("#current_script > span").remove();
             for (i = 0; i < words.length; i++) {
-                var word = "<span class='one_word_of_scripts'>" + words[i] + "</span>";
+                if (words[i].includes('.')) {
+                    word = "<span class='one_word_of_scripts'>" + words[i].split('.')[0] + "</span><span>.</span>";
+                }
+                else if (words[i].includes(',')) {
+                    word = "<span class='one_word_of_scripts'>" + words[i].split(',')[0] + "</span><span>,</span>";
+                } else {
+                    word = "<span class='one_word_of_scripts'>" + words[i] + "</span>";
+                }
+
                 $("#current_script").append(word + "<span class='space'> </span>");
             }
             $(".subtitle_area .one_word_of_scripts").click(function () {
                 query = $(this).text();
-                $(".subtitle_area .word_you_wana_know").text(query);
+                $("#word_you_wana_know").text(query);
                 $("#meaning_word_you_wana_know").text("loading");
                 getMeaningOfWord(query);
             });

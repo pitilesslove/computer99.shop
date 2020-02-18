@@ -136,7 +136,7 @@ def get_next_script(request):
             if x == 0:
                 next_index = script.index
                 start_time = script.start
-            texts += script.text
+            texts += script.text + " "
             duration = (script.start + script.duration) - start_time
 
         # posts_serialized = serializers.serialize('json', next_script)
