@@ -74,6 +74,7 @@ body {
 }
 
 #current_script_index {
+  width: 16px;
   text-align: center; 
 }
 

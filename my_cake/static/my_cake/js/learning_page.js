@@ -117,22 +117,24 @@ function setYoutubeLoop() {
     replayVideo();
 }
 
+function refreshIndexInputBox() {
+    if (current_loop_size == 0) {
+        $("#current_script_index").val(current_script.index);
+    }
+    else {
+        $("#current_script_index").val(current_script.index + " ~ " + (current_script.index + current_loop_size));
+    }
+    $("#current_script_index").css("width", ($("#current_script_index").val().length + 1) * 8) + 'px';
+}
+
 function setLoopSize(value) {
 
     if (current_loop_size + value < 0)
         return;
 
     current_loop_size += value;
-
-    var current_loop_value = current_loop_index + 1;
-    if (current_loop_size == 0) {
-        $("#current_script_index").val(current_loop_value);
-    }
-    else {
-        $("#current_script_index").val(current_loop_value + " ~ " + (current_loop_value + current_loop_size));
-    }
-    $("#current_script_index").css("width", ($("#current_script_index").val().length + 1) * 8) + 'px';
-
+    refreshIndexInputBox();
+    getScripts(0);
 
 }
 
@@ -142,6 +144,8 @@ function csrfSafeMethod(method) {
 }
 
 function handleLoad() {
+    $("#length_script").prop('disabled', true);
+
     var csrftoken = getCookie('csrftoken');
 
     $.ajaxSetup({
@@ -151,7 +155,7 @@ function handleLoad() {
             }
         }
     });
-    $("#length_script").prop('disabled', true);
+
     getScripts(0);
     document.onkeydown = function (e) {
         switch (e.keyCode) {
@@ -190,22 +194,18 @@ function getCookie(name) {
 
 function getScripts(plus_minus) {
 
-    var currentScriptIndex = document.querySelector('#current_script_index').value.trim();
+    var currentScriptIndex = document.querySelector('#current_script_index').value.split(' ')[0];
     var youtube_id = $('#videoContainer').attr('youtube_id')
     var next_index = (parseInt(currentScriptIndex) + plus_minus)
     // Do a PATCH request with the completed data.
-
     $.ajax({
         url: 'api/scripts/',
         method: "POST",
-        data: { index: next_index, youtube_id: youtube_id },
+        data: { index: next_index, mounts_of_scripts: current_loop_size, youtube_id: youtube_id },
         dataType: 'json',
         credentials: 'same-origin',
         success: function (data) {
             //$("#current_script").text(data.text);
-            $("#current_script_index").val(data.index);
-            console.log(data.start);
-            console.log(data.duration);
             current_script.index = data.index;
             current_script.start = data.start;
             current_script.text = data.text;
@@ -224,6 +224,7 @@ function getScripts(plus_minus) {
                 getMeaningOfWord(query);
             });
             current_script.duration = data.duration;
+            refreshIndexInputBox(0);
             seekToPlay(current_script.start);
         }
     });

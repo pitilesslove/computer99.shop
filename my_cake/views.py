@@ -6,6 +6,7 @@ from django.shortcuts import render
 from my_cake.endic_daum import create_soup_with_query
 import requests
 import re
+import decimal
 
 
 def home(request):
@@ -116,24 +117,35 @@ def get_next_script(request):
         # no need to do this
         # request_csrf_token = request.POST.get('csrfmiddlewaretoken', '')
         index = request.POST.get('index', None)
+        mounts_of_scripts = request.POST.get('mounts_of_scripts', 0)
         youtube_id = request.POST.get('youtube_id', None)
-
         current_page_obj = None
         try:
             current_page_obj = YoutubeDatas.objects.get(pk=youtube_id)
         except YoutubeDatas.DoesNotExist:
             current_page_obj = None
             print("curr page is none")
+            return JsonResponse(None)
 
-        next_script = current_page_obj.scripts.get(index=int(index))
+        next_index = 0
+        start_time = 0
+        texts = ""
+        duration = decimal.Decimal(0)
+        for x in range(int(mounts_of_scripts)+1):
+            script = current_page_obj.scripts.get(index=int(index)+x)
+            if x == 0:
+                next_index = script.index
+                start_time = script.start
+            texts += script.text
+            duration = (script.start + script.duration) - start_time
+
         # posts_serialized = serializers.serialize('json', next_script)
         script_data = {
-            'index': next_script.index,
-            'text':  next_script.text,
-            'start': next_script.start,
-            'duration': next_script.duration
+            'index': next_index,
+            'text':  texts,
+            'start': start_time,
+            'duration': duration
         }
-        print(script_data)
         return JsonResponse(script_data, safe=False)
 
     return JsonResponse(None)
