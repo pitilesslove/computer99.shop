@@ -222,11 +222,12 @@ function getScripts(plus_minus) {
             current_script.start = data.start;
             current_script.text = data.text;
 
+            console.log(data.text);
             var words = data.text.split(/[\s]+/);
             var i, word;
             $("#current_script > span").remove();
             for (i = 0; i < words.length; i++) {
-                if (words[i].includes('.')) {
+                if (words[i].endsWith('.')) {
                     word = "<span class='one_word_of_scripts'>" + words[i].split('.')[0] + "</span><span>.</span>";
                 }
                 else if (words[i].includes(',')) {
@@ -261,7 +262,11 @@ function getMeaningOfWord(query) {
         data: { query: query },
         dataType: 'json',
         success: function (data) {
-            $("#meaning_word_you_wana_know").text(data.words);
+            var viewed_text = "";
+            for (text in data.words) {
+                viewed_text += data.words[text] + "<br/>";
+            }
+            $("#meaning_word_you_wana_know").html(viewed_text);
         }
     });
 
